@@ -9,9 +9,6 @@ var takjil = require('./app/models/takjil');
 
 var port     = process.env.PORT || 8080; // set our port
 
-// ROUTES FOR OUR API
-// =============================================================================
-
 // create our router
 var router = express.Router();
 
@@ -22,12 +19,10 @@ router.use(function(req, res, next) {
 	next();
 });
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });	
+	res.json({ message: 'hae beb' });	
 });
-// on routes that end in /bears
-// ----------------------------------------------------
+
 router.route('/takjil')
 	.get(takjil.findAll)
 	.post(takjil.addTakjil);
@@ -37,7 +32,7 @@ router.route('/takjil/:id')
 	.put(takjil.updateTakjil)
 	.delete(takjil.deleteTakjil);
 
-// REGISTER OUR ROUTES -------------------------------
+// register route
 app.use('/api', router);
 
 app.listen(port);

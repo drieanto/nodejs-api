@@ -1,13 +1,13 @@
 var mongo = require('mongoskin');
-
+var BSON = mongo.BSONPure;
 var db = mongo.db('mongodb://127.0.0.1:27017/apidb');
 
 db.bind('takjil');
 
 exports.findById = function(req, res) {
-	var id = parseInt(req.params.id);
+	var id = req.params.id;
 	db.takjil.findOne({
-		'id' : id
+		'_id' : new BSON.ObjectID(id)
 	},function(err, result){
 		if(err)
 			res.send(err);
@@ -35,8 +35,12 @@ exports.addTakjil = function(req, res) {
 
 exports.updateTakjil = function(req, res) {
 	var data = req.body;
-	var id = parseInt(req.params.id);
-	db.takjil.update({'id':id},{$set:data}, function(err){
+	var id = req.params.id;
+	db.takjil.update({
+		'_id': new BSON.ObjectID(id)
+	},{
+		$set:data
+	}, function(err){
 		if(err)
 			res.send(err);
 		res.send({message:"takjil updated"});
@@ -44,8 +48,10 @@ exports.updateTakjil = function(req, res) {
 }
 
 exports.deleteTakjil = function(req, res) {
-	var id = parseInt(req.params.id);
-	db.takjil.remove({'id':id}, function(err){
+	var id = req.params.id;
+	db.takjil.remove({
+		'_id': new BSON.ObjectID(id)
+	}, function(err){
 		if(err)
 			res.send(err);
 		res.send({message:"takjil deleted"});

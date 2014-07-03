@@ -19,11 +19,11 @@ Route
 -----
 ```sh
 router.route('/takjil')
-	.get(takjil.findAll)
-	.post(takjil.addTakjil);
+	.get(takjil.findAll) // get all data
+	.post(takjil.addTakjil); // create new takjil
 
 router.route('/takjil/:id')
-	.get(takjil.findById)
-	.put(takjil.updateTakjil)
-	.delete(takjil.deleteTakjil);
+	.get(takjil.findById) // get a takjil
+	.put(takjil.updateTakjil) // update data a takjil
+	.delete(takjil.deleteTakjil); // delete a takjil
 ```

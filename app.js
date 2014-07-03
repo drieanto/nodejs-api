@@ -20,7 +20,7 @@ router.use(function(req, res, next) {
 });
 
 router.get('/', function(req, res) {
-	res.json({ message: 'hae beb' });	
+	res.send({ message: 'hae beb' });	
 });
 
 router.route('/takjil')
